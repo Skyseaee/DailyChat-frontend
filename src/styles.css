@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+  }
+  
+  .login-container {
+    text-align: center;
+    padding: 50px;
+  }
+  
+  .conversation-container {
+    padding: 20px;
+  }
+  
+  .conversation-history {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .diary-container {
+    padding: 20px;
+  }

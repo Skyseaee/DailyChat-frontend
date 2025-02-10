@@ -1,19 +1,22 @@
-import React, { useState, useEffect } from'react';
+import React, { useState, useEffect } from 'react';
 import { generateDailySummary, generateMonthlySummary, getDiary } from '../api/api';
-import { useNavigate } from'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Diary = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
-  if (!token) {
-    navigate('/login');
-    return null;
-  }
 
   const [date, setDate] = useState('');
   const [diaryEntry, setDiaryEntry] = useState(null);
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
+
+  useEffect(() => {
+    if (!token) {
+      navigate('/login');
+    }
+    document.title = 'Diary';
+  }, [token, navigate]);
 
   const handleDateChange = (e) => {
     setDate(e.target.value);
@@ -53,10 +56,6 @@ const Diary = () => {
       console.error('Get diary failed:', error.message);
     }
   };
-
-  useEffect(() => {
-    document.title = 'Diary';
-  }, []);
 
   return (
     <div className="diary-container">

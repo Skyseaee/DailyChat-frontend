@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000'; // 后端地址，根据实际情况修改
+const API_URL = 'http://localhost:8000'; // 后端地址，根据实际情况修改
 
 const api = axios.create({
   baseURL: API_URL,

@@ -1,0 +1,49 @@
+/* 导航栏样式 */
+.navbar {
+    background-color: #9ACBD0;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* 导航项的样式 */
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-item {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-item:hover {
+    background-color: #555;
+  }
+  
+  /* 登出按钮的样式 */
+  .logout-button {
+    color: white;
+    background-color: #F7CFD8;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: #F7CFD8;
+  }
+  
+  /* 当前页面链接高亮 */
+  .nav-item.active {
+    background-color: #FFB4A2;
+  }
+  

@@ -1,66 +1,108 @@
+/* 对话容器 */
 .conversation-container {
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    text-align: center;
-    color: #333;
-  }
-  
-  .conversation-history {
-    height: 400px; /* 设置固定高度 */
-    overflow-y: auto; /* 支持滚动 */
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .conversation-entry {
-    margin-bottom: 15px;
-  }
-  
-  .conversation-entry p {
-    margin: 5px 0;
-  }
-  
-  .conversation-form {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-  }
-  
-  .conversation-input {
-    width: 80%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .conversation-submit-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .conversation-submit-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .conversation-submit-button:hover {
-    background-color: #0056b3;
-  }
-  
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 对话历史部分 */
+.conversation-history {
+  max-height: 400px; /* 设置一个最大高度 */
+  height: 400px; /* 确保高度是固定的，支持滚动 */
+  overflow-y: auto; /* 超出部分显示滚动条 */
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 对话条目 */
+.conversation-entry {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+/* 用户消息的容器 */
+.user-message-container {
+  align-self: flex-end;
+  text-align: left; /* 让用户的“用户:”文本右对齐 */
+}
+
+/* 小助手消息的容器 */
+.bot-message-container {
+  align-self: flex-start;
+  text-align: left; /* 小助手的消息左对齐 */
+}
+
+/* 用户消息的气泡 */
+.user-message {
+  background-color: #a0d7ff;
+  padding: 8px;
+  border-radius: 6px;
+  margin: 5px 0;
+  max-width: 70%;
+  min-width: 100px;
+  word-wrap: break-word;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  align-self: flex-start;
+}
+
+/* 小助手消息的气泡 */
+.bot-message {
+  background-color: #e2e2e2;
+  padding: 8px;
+  border-radius: 6px;
+  margin: 5px 0;
+  max-width: 70%;
+  min-width: 100px;
+  word-wrap: break-word;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  align-self: flex-start;
+}
+
+/* 用户“用户:”标签的右对齐 */
+.user-label {
+  text-align: right;
+}
+
+/* 小助手“助手:”标签的左对齐 */
+.bot-label {
+  text-align: left;
+}
+
+
+/* 对话输入部分 */
+.conversation-form {
+  display: flex;
+  align-items: center;
+}
+
+.conversation-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.conversation-submit-button {
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100px;
+}
+
+.conversation-submit-button:hover {
+  background-color: #45a049;
+}

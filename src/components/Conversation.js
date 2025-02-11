@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { conversation } from '../api/api';
 import { useNavigate } from 'react-router-dom';
-import './Conversation.css'; // 引入外部CSS文件
+import './Conversation.css';
 
 const Conversation = () => {
   const navigate = useNavigate();
   const [input, setInput] = useState('');
   const [conversationHistory, setConversationHistory] = useState([]);
-  const conversationContainerRef = useRef(null); // 用于自动滚动
+  const conversationContainerRef = useRef(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -28,17 +28,32 @@ const Conversation = () => {
       return;
     }
 
+    // 在用户提交前，先显示“小助手正在输入中 . . .”
+    setConversationHistory(prev => [
+      ...prev, 
+      { user: input, bot: '小助手正在输入中 . . .' }
+    ]);
+    setInput('');
+
+    // 滚动到底部
+    if (conversationContainerRef.current) {
+      conversationContainerRef.current.scrollTop = conversationContainerRef.current.scrollHeight;
+    }
+
     try {
       const response = await conversation(input, token);
-      setConversationHistory(prev => [
-        ...prev, 
-        { user: input, bot: response.data.response }
-      ]);
-      setInput('');
-      // 滚动到最新的对话
+      // 替换“小助手正在输入中 . . .”为真实回复
+      setConversationHistory(prev => {
+        const newHistory = [...prev];
+        newHistory[newHistory.length - 1] = { user: input, bot: response.data.response };
+        return newHistory;
+      });
+
+      // 再次滚动到底部
       if (conversationContainerRef.current) {
         conversationContainerRef.current.scrollTop = conversationContainerRef.current.scrollHeight;
       }
+
     } catch (error) {
       console.error('对话失败:', error.message);
     }
@@ -53,15 +68,18 @@ const Conversation = () => {
       <h2>对话</h2>
       
       {/* 历史对话 */}
-      <div 
-        className="conversation-history" 
-        ref={conversationContainerRef}
-      >
+      <div className="conversation-history" ref={conversationContainerRef}>
         {conversationHistory.map((entry, index) => (
           <div key={index} className="conversation-entry">
-            <p><strong>用户:</strong> {entry.user}</p>
-            <p><strong>小助手:</strong> {entry.bot}</p>
+          <div className="user-message-container">
+            <p className="user-label"><strong>用户:</strong></p>
+            <div className="user-message">{entry.user}</div>
           </div>
+          <div className="bot-message-container">
+            <p className="bot-label"><strong>小助手:</strong></p>
+            <div className="bot-message">{entry.bot}</div>
+          </div>
+        </div>        
         ))}
       </div>
       

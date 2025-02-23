@@ -30,9 +30,9 @@ const handleApiError = (error) => {
   throw new Error('网络连接异常，请检查网络设置');
 };
 
-export const conversation = async (input) => {
+export const conversation = async (input, user_id) => {
   try {
-    const response = await api.post('/api/v1/conversation', { input });
+    const response = await api.post('/api/v1/conversation', { input, user_id });
     return {
       success: true,
       response: response.response || response // 兼容新旧版本

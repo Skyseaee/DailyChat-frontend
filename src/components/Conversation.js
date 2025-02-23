@@ -41,11 +41,13 @@ const Conversation = () => {
     }
 
     try {
-      const response = await conversation(input, token);
+      const user_id = localStorage.getItem('user_id')
+      const response = await conversation(input, user_id);
+
       // 替换“小助手正在输入中 . . .”为真实回复
       setConversationHistory(prev => {
         const newHistory = [...prev];
-        newHistory[newHistory.length - 1] = { user: input, bot: response.data.response };
+        newHistory[newHistory.length - 1] = { user: input, bot: response.response.data.response };
         return newHistory;
       });
 

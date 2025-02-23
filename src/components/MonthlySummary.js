@@ -1,21 +1,37 @@
 import React from 'react';
 
-const MonthlySummary = ({ month, year, loading }) => {
+// MonthlySummaryList.js
+const MonthlySummaryList = ({ summaries, emptyMessage }) => {
+  if (!summaries?.length) return <div className="empty-message">{emptyMessage}</div>;
+
   return (
-    <div className="monthly-summary">
-      {loading ? (
-        <p>加载中...</p>
-      ) : (
-        month && year && (
-          <div className="monthly-summary-content">
-            <h3>{year}年{month}月总结</h3>
-            {/* 这里展示月度总结的内容，可能来自API */}
-            <pre>{/* 这里显示月度总结内容 */}</pre>
+    <div className="summary-grid">
+      {summaries.map(summary => (
+        <div key={summary.month} className="summary-card">
+          <h4>{formatMonthToChinese(summary.month)}</h4>
+          <p className="summary-content">
+            {summary.monthly_summary || '该月暂无总结'}
+          </p>
+          <div className="summary-footer">
+            <span>
+              生成时间: {getLastDayOfMonth(summary.month)}
+            </span>
           </div>
-        )
-      )}
+        </div>
+      ))}
     </div>
   );
 };
 
-export default MonthlySummary;
+const formatMonthToChinese = (month) => {
+  const [year, monthNum] = month.split('-');
+  return `${year}年${parseInt(monthNum)}月`; // 去掉前导零
+};
+
+const getLastDayOfMonth = (month) => {
+  const [year, monthNum] = month.split('-').map(Number); // 拆分并转换为数字
+  const date = new Date(year, monthNum, 0); 
+  return date.toLocaleDateString(); 
+};
+
+export default MonthlySummaryList;

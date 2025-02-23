@@ -13,10 +13,11 @@ const Login = () => {
     e.preventDefault();
     setError(null); // 清除之前的错误信息
     try {
-      const response = await login({ username, password });
+      const response = await login.login({ username, password });
       if (response.data?.token) {
         localStorage.setItem('token', response.data.token);
-        console.log(response.data.token)
+        localStorage.setItem('user_id', response.data.user_id)
+        console.log(response)
         navigate('/conversation');
       } else {
         throw new Error('服务器返回无效响应');

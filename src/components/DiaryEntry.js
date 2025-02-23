@@ -1,22 +1,25 @@
 import React from 'react';
 
-const DiaryEntry = ({ diaryEntry, loading }) => {
+// DiaryEntryList.js
+const DiaryEntryList = ({ entries, emptyMessage }) => {
   return (
-    <div className="diary-entry">
-      {loading ? (
-        <p>加载中...</p>
+    <div className="diary-list">
+      {entries.length === 0 ? (
+        <div className="empty-state">{emptyMessage}</div>
       ) : (
-        diaryEntry ? (
-          <div className="diary-content">
-            <h3>日记条目</h3>
-            <pre>{JSON.stringify(diaryEntry, null, 2)}</pre>
+        entries.map((entry) => (
+          <div key={entry.date} className="diary-card">
+            <div className="date-badge">
+              {new Date(entry.date).getDate()}日
+            </div>
+            <div className="content-box">
+              {entry.daily_summary || <i>无详细内容</i>}
+            </div>
           </div>
-        ) : (
-          <p>没有找到该日期的日记条目。</p>
-        )
+        ))
       )}
     </div>
   );
 };
 
-export default DiaryEntry;
+export default DiaryEntryList;

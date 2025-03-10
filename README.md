@@ -1,3 +1,80 @@
+# install env
+在 macOS 上安装 `nvm`（Node Version Manager）和 `npm`（Node Package Manager）的步骤如下：
+
+### 1. 安装 Homebrew（如果尚未安装）
+Homebrew 是 macOS 上的包管理器，可以简化安装过程。
+
+打开终端并运行以下命令来安装 Homebrew：
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### 2. 安装 nvm
+使用 Homebrew 安装 `nvm`：
+
+```bash
+brew install nvm
+```
+
+安装完成后，需要配置 `nvm`。将以下内容添加到你的 shell 配置文件（如 `~/.zshrc` 或 `~/.bashrc`）：
+
+```bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+```
+
+然后，运行以下命令使配置生效：
+
+```bash
+source ~/.zshrc  # 或者 source ~/.bashrc
+```
+
+### 3. 使用 nvm 安装 Node.js 和 npm
+安装最新版本的 Node.js（这将同时安装 `npm`）：
+
+```bash
+nvm install node
+```
+
+或者安装特定版本的 Node.js：
+
+```bash
+nvm install 14.17.0  # 例如安装 14.17.0 版本
+```
+
+### 4. 验证安装
+安装完成后，验证 `node` 和 `npm` 是否安装成功：
+
+```bash
+node -v
+npm -v
+```
+
+### 5. 切换 Node.js 版本（可选）
+如果你安装了多个版本的 Node.js，可以使用以下命令切换版本：
+
+```bash
+nvm use 14.17.0  # 切换到 14.17.0 版本
+```
+
+或者设置为默认版本：
+
+```bash
+nvm alias default 14.17.0
+```
+
+### 6. 更新 npm（可选）
+你可以使用以下命令更新 `npm` 到最新版本：
+
+```bash
+npm install -g npm@latest
+```
+
+### 总结
+通过以上步骤，你已经在 macOS 上成功安装了 `nvm`、`Node.js` 和 `npm`。你可以使用 `nvm` 轻松管理多个 Node.js 版本，并使用 `npm` 安装和管理 Node.js 包。
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
